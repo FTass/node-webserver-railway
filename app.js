@@ -4,7 +4,7 @@ const hbs = require('hbs')
 
 
 const app = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 //Handlebars
 app.set('view engine', 'hbs');
@@ -18,7 +18,7 @@ hbs.registerPartials(__dirname + '/views/partials');
 
 app.use( express.static('public') );
 
-
+app.get('/health', (_req, res) => res.status(200).send('OK'));
 app.get('/', (req, res) => {
     res.render('home', {
         nombre: 'Francisco Tassara',
